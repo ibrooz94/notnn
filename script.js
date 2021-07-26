@@ -1,6 +1,6 @@
-// api url
+	// api url
 const api_url =
-	"https://polar-temple-04652.herokuapp.com/s/felony";
+	"http://127.0.0.1:5000/d/https://www.thenetnaija.com/videos/music/13055-ckay-felony";
 
 	// Defining async function
 async function getapi(url) {
@@ -23,6 +23,7 @@ getapi(api_url);
 function hideloader() {
 	document.getElementById('loading').style.display = 'none';
 }
+
 // Function to define innerHTML for HTML table
 function show(data) {
 	let tab =
