@@ -1,5 +1,8 @@
 	// Defining async function
 async function getapi(url) {
+    // show loader
+	document.getElementById('loading').classList.remove('hidden');
+
 	// Storing response
 	const response = await fetch(url)
 	
@@ -7,7 +10,8 @@ async function getapi(url) {
 	var data = await response.json();
 	console.log(data);
 	if (response) {
-		hideloader();
+		// to hide the loader
+		document.getElementById('loading').classList.add('hidden');
 	}
 	show(data);
 }
@@ -20,7 +24,7 @@ document.getElementById('aform').addEventListener('click', function(e){
 	getapi(api_url)
 })
 
-// Function to hide the loader
+// Function 
 function hideloader() {
 	document.getElementById('loading').style.display = 'none';
 }
