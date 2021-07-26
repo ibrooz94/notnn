@@ -17,7 +17,7 @@ async function getapi(url) {
 }
 
 // Calling that async function
-document.getElementById('aform').addEventListener('click', function(e){
+document.getElementById('aform').addEventListener('submit', function(e){
 	e.preventDefault()
 	let x = document.getElementById("input").value;
 	const api_url = "https://polar-temple-04652.herokuapp.com/s/" + x;
@@ -69,7 +69,7 @@ function show(data) {
 // 	present(data);
 // }
 
-// document.getElementById('download').addEventListener('click', function(e){
+// document.getElementById('download').addEventListener('submit', function(e){
 // 	e.preventDefault()
 // 	console.log("we here ")
 // 	let x = document.getElementById("url").value;
