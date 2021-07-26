@@ -1,6 +1,6 @@
 // api url
 const api_url =
-	"http://polar-temple-04652.herokuapp.com/s/felony";
+	"https://polar-temple-04652.herokuapp.com/s/felony";
 
 	// Defining async function
 async function getapi(url) {
