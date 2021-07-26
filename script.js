@@ -1,6 +1,6 @@
 	// api url
 const api_url =
-	"http://polar-temple-04652.herokuapp.com/d/https://www.thenetnaija.com/videos/music/13055-ckay-felony";
+	"https://polar-temple-04652.herokuapp.com/d/https://www.thenetnaija.com/videos/music/13055-ckay-felony";
 
 	// Defining async function
 async function getapi(url) {
