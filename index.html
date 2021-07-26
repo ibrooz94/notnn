@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<script src="script.js"></script>
-		<link rel="stylesheet" href="style.css" />
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 		<meta charset="UTF-8" />
-		<meta name="viewport"
-			content="width=device-width, initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
 	</head>
+
 	<body>
+		
+		<!-- search form -->
+		<form id="aform">
+			<input type="text" name="name" id="input" value="value" />
+			<input type="submit" value="Continue"> 
+		</form>
+		  
 		<!-- Here a loader is created which
 			loads till response comes -->
 		<div class="d-flex justify-content-center">
@@ -17,14 +24,11 @@
 				<span class="sr-only">Loading...</span>
 			</div>
 		</div>
-		<h1>Registered Employees</h1>
-		<!-- table for showing data -->
-        <div class="middle-container">
 
-        </div>
-        <div class="bottom-container">
-            
-        </div>
-		<table id="employees"></table>
+		<div id="cards">
+
+		</div>
+		</div>
+	<script src="script.js"></script>
 	</body>
 </html>

@@ -1,10 +1,5 @@
-	// api url
-const api_url =
-	"https://polar-temple-04652.herokuapp.com/d/https://www.thenetnaija.com/videos/music/13055-ckay-felony";
-
 	// Defining async function
 async function getapi(url) {
-	
 	// Storing response
 	const response = await fetch(url)
 	
@@ -16,8 +11,14 @@ async function getapi(url) {
 	}
 	show(data);
 }
+
 // Calling that async function
-getapi(api_url);
+document.getElementById('aform').addEventListener('click', function(e){
+	e.preventDefault()
+	let x = document.getElementById("input").value;
+	const api_url = "https://polar-temple-04652.herokuapp.com/s/" + x;
+	getapi(api_url)
+})
 
 // Function to hide the loader
 function hideloader() {
@@ -27,28 +28,72 @@ function hideloader() {
 // Function to define innerHTML for HTML table
 function show(data) {
 	let tab =
-		`<tr>
-		<th>Name</th>
-		<th>Office</th>
-		<th>Position</th>
-		</tr>`;
+		`<div class="card-columns">`;
 	
-	tab += `<tr>
-	<td>${data.name} </td>
-	<td>${data.filesize}</td>
-	<td><a href='${data.url}'> DOWN </a></td>		
-	</tr>`;
+	for (let r of data) {
+		tab += `
+		<div class="card border-dark" >
+			<img class="card-img-top" style="object-fit: contain;" src='${r.img}' alt="Card image cap">
+			<div class="card-body">
+				<h5 class="card-title">${r.name}</h5>
+				<p class="card-text"> ${r.exr} </p>
+			</div>
+		<form method="post" id="download" class="form-inline">
+			<input type="hidden" id="url" name="url" value="${r.url}">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">GET LINK</button>
+		</form>
+		</div>
+		`;
+	}
 
-// 	// Loop to access all rows
-// 	for (let r of data) {
-// 		tab += `<tr>
-// 	<td>${r.name} </td>
-// 	<td><img style='width:80px; height:80px;' src='${r.img}'> </td>
-// 	<td>${r.exr}</td>
-// 	<td><a href='${r.url}'> DOWN </a></td>		
-// </tr>`;
-// 	}
-	
 	// Setting innerHTML as tab variable
-	document.getElementById("employees").innerHTML = tab;
+	document.getElementById("cards").innerHTML = tab;
 }
+
+///////////////////////////////////////////////////////////
+
+// async function getlink(url) {
+// 	// Storing response
+// 	const response = await fetch(url)
+	
+// 	// Storing data in form of JSON
+// 	var data = await response.json();
+// 	console.log(data);
+// 	if (response) {
+// 		hideloader();
+// 	}
+// 	present(data);
+// }
+
+// document.getElementById('download').addEventListener('click', function(e){
+// 	e.preventDefault()
+// 	console.log("we here ")
+// 	let x = document.getElementById("url").value;
+// 	const link_url = "https://polar-temple-04652.herokuapp.com/d/" + x;
+// 	getlink(link_url)
+// })
+
+// function present(data) {
+// 	let tab =
+// 		`
+// 		<div class="card text-center">
+// 		<div class="card-header">
+// 			Your Link is Ready 
+// 		</div>
+	
+// 		<ul class="list-group list-group-flush">
+// 			<li class="list-group-item">${data.name}</li>
+// 			<li class="list-group-item">${data.filesize}</li>
+// 		</ul>
+	
+// 		<div class="card-body">
+// 			<a class = "btn btn-primary" href = "${data.url}"> DOWNLOAD </a>
+// 		</div>
+
+// 	  </div>
+// 		`;
+
+
+// 	document.getElementById("cards").innerHTML = tab;
+// }
+
