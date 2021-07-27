@@ -8,7 +8,6 @@ async function getapi(url) {
 	
 	// Storing data in form of JSON
 	var data = await response.json();
-	console.log(data);
 	if (response) {
 		// to hide the loader
 		document.getElementById('loading').classList.add('hidden');
@@ -29,32 +28,32 @@ function hideloader() {
 	document.getElementById('loading').style.display = 'none';
 }
 
-// Function to define innerHTML for HTML table
+// Function to define innerHTML for display
 function show(data) {
-	let tab =
+	let results =
 		`<div class="card-columns">`;
 	
 	for (let r of data) {
-		tab += `
+		results += `
 		<div class="card border-dark" >
 			<img class="card-img-top" style="object-fit: contain;" src='${r.img}' alt="Card image cap">
 			<div class="card-body">
 				<h5 class="card-title">${r.name}</h5>
 				<p class="card-text"> ${r.exr} </p>
 			</div>
-		<form method="post" id="download" class="form-inline">
-			<input type="hidden" id="url" name="url" value="${r.url}">
-			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">GET LINK</button>
-		</form>
+			<form method="post" class="download" class="form-inline">
+				<input type="hidden" class="url" name="url" value="${r.url}">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">GET LINK</button>
+			</form>
 		</div>
 		`;
 	}
 
 	// Setting innerHTML as tab variable
-	document.getElementById("cards").innerHTML = tab;
+	document.getElementById("cards").innerHTML = results;
 }
 
-///////////////////////////////////////////////////////////
+// SECOND API CALL  SECOND API CALL  SECOND API CALL  SECOND API CALL  SECOND API CALL 
 
 // async function getlink(url) {
 // 	// Storing response
@@ -81,9 +80,7 @@ function show(data) {
 // 	let tab =
 // 		`
 // 		<div class="card text-center">
-// 		<div class="card-header">
-// 			Your Link is Ready 
-// 		</div>
+// 		<div class="card-header"> Your Link is Ready </div>
 	
 // 		<ul class="list-group list-group-flush">
 // 			<li class="list-group-item">${data.name}</li>
@@ -93,8 +90,6 @@ function show(data) {
 // 		<div class="card-body">
 // 			<a class = "btn btn-primary" href = "${data.url}"> DOWNLOAD </a>
 // 		</div>
-
-// 	  </div>
 // 		`;
 
 
