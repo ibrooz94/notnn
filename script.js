@@ -8,11 +8,14 @@ async function getapi(url) {
 	
 	// Storing data in form of JSON
 	var data = await response.json();
-	if (response) {
-		// to hide the loader
+
+	if(response){
 		document.getElementById('loading').classList.add('hidden');
-	}
-	show(data);
+		show(data);
+		
+	}else{
+		console.log("no data found");
+	}	
 }
 
 // Calling that async function
@@ -40,59 +43,71 @@ function show(data) {
 			<div class="card-body">
 				<h5 class="card-title">${r.name}</h5>
 				<p class="card-text"> ${r.exr} </p>
-			</div>
-			<form method="post" class="download" class="form-inline">
-				<input type="hidden" class="url" name="url" value="${r.url}">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">GET LINK</button>
+				<a class="btn btn-outline-success my-2 my-sm-0" id="download" href="${r.url}">GET LINK </a>
 			</form>
+			</div>
+
 		</div>
 		`;
 	}
 
 	// Setting innerHTML as tab variable
 	document.getElementById("cards").innerHTML = results;
+	let y = document.getElementById("download");
+	if (y){
+		console.log("we here")
+		check();
+	}
+
 }
 
 // SECOND API CALL  SECOND API CALL  SECOND API CALL  SECOND API CALL  SECOND API CALL 
 
-// async function getlink(url) {
-// 	// Storing response
-// 	const response = await fetch(url)
+async function getlink(url) {
+    // show loader
+	document.getElementById('loading').classList.remove('hidden');
+
+	// Storing response
+	const response = await fetch(url)
 	
-// 	// Storing data in form of JSON
-// 	var data = await response.json();
-// 	console.log(data);
-// 	if (response) {
-// 		hideloader();
-// 	}
-// 	present(data);
-// }
+	// Storing data in form of JSON
+	var data = await response.json();
+	if (response) {
+		// to hide the loader
+		document.getElementById('loading').classList.add('hidden');
+	}
+	present(data);
+}
 
-// document.getElementById('download').addEventListener('submit', function(e){
-// 	e.preventDefault()
-// 	console.log("we here ")
-// 	let x = document.getElementById("url").value;
-// 	const link_url = "https://polar-temple-04652.herokuapp.com/d/" + x;
-// 	getlink(link_url)
-// })
+function check(){
+	document.getElementById('download').addEventListener('click', function(e){
+	e.preventDefault()
+	console.log("we here ")
+	let x = this.href;
+	console.log(x)
+	const link_url = "https://polar-temple-04652.herokuapp.com/d/" + x;
+	getlink(link_url)
+})
+}
 
-// function present(data) {
-// 	let tab =
-// 		`
-// 		<div class="card text-center">
-// 		<div class="card-header"> Your Link is Ready </div>
+
+function present(data) {
+	let tab =
+		`
+		<div class="card text-center">
+		<div class="card-header"> Your Link is Ready </div>
 	
-// 		<ul class="list-group list-group-flush">
-// 			<li class="list-group-item">${data.name}</li>
-// 			<li class="list-group-item">${data.filesize}</li>
-// 		</ul>
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item">${data.name}</li>
+			<li class="list-group-item">${data.filesize}</li>
+		</ul>
 	
-// 		<div class="card-body">
-// 			<a class = "btn btn-primary" href = "${data.url}"> DOWNLOAD </a>
-// 		</div>
-// 		`;
+		<div class="card-body">
+			<a class = "btn btn-primary" href = "${data.url}"> DOWNLOAD </a>
+		</div>
+		`;
 
 
-// 	document.getElementById("cards").innerHTML = tab;
-// }
+	document.getElementById("cards").innerHTML = tab;
+}
 
