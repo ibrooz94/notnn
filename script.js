@@ -1,3 +1,45 @@
+
+async function getTrend() {
+	url = "https://polar-temple-04652.herokuapp.com/tr"
+    // show loader
+	document.getElementById('loading').classList.remove('hidden');
+
+	// Storing response
+	const response = await fetch(url)
+	
+	// Storing data in form of JSON
+	var data = await response.json();
+
+	if(response){
+		document.getElementById('loading').classList.add('hidden');
+		trend(data);
+		
+	}else{
+		console.log("no data found");
+	}	
+}
+
+// Function to define innerHTML for display [ RESULTS PAGE ]
+function trend(data) {
+	let results =
+		`<div class="card-columns">`;
+	for (let r of data) {
+		results += `
+		<div class="card border-dark" >
+			<img class="card-img-top" style="object-fit: contain;" src='${r.img}' alt="Card image cap">
+			<div class="card-body">
+				<h5 class="card-title">${r.name}</h5>
+				<a onclick="linkSender(event)" class="btn btn-outline-success my-2 my-sm-0" data-record-id="${r.url}">GET LINK </a>
+			</form>
+			</div>
+		</div>
+		`;}
+
+	// Setting innerHTML as tab variable
+	document.getElementById("cards").innerHTML = results;
+
+}
+
 // Get form input (base.html)
 function valueSender(){
 	let x = document.getElementById("userinput").value;
@@ -47,15 +89,9 @@ function show(data) {
 	// Setting innerHTML as tab variable
 	document.getElementById("cards").innerHTML = results;
 
-	let y = document.getElementById("download");
-	if (y){
-		console.log("we here")
-
-	}
-
 }
 
-// SECOND API CALL  SECOND API CALL  SECOND API CALL  SECOND API CALL  SECOND API CALL 
+// SECOND API CALL  DOWNLOAD-PAGE  SECOND API CALL  DOWNLOAD-PAGE  SECOND API CALL 
 
 async function getlink(url) {
     // show loader
@@ -66,14 +102,17 @@ async function getlink(url) {
 	
 	// Storing data in form of JSON
 	var data = await response.json();
-	if (response) {
+	if (data) {
 		// to hide the loader
 		document.getElementById('loading').classList.add('hidden');
+		present(data);
+	}else{
+		document.getElementById('loading').classList.add('hidden');
+		alert('ERROR')
 	}
-	present(data);
 }
 
-// Function to define innerHTML for display [DOWNLOAD PAGE ]
+// Function to define innerHTML for display [DOWNLOAD PAGE]
 function present(data) {
 	let tab =
 		`

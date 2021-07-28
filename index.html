@@ -6,7 +6,7 @@
 		<link rel="stylesheet" href="style.css">
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Still in construction - Alpha </title>
+		<title>Alpha Release </title>
 	</head>
 
 	<body>
@@ -26,8 +26,25 @@
 			  </form>
 			</div>
 		  </nav>
+		
+		<h1> Trending </h1>
+
+		<div class="d-flex justify-content-center">
+			<div class="spinner-border hidden" role="status" id="loading">
+				<span class="sr-only">Loading...</span>
+			</div>
+		</div>
+
+		<div id="cards">
+
+		</div>
+		</div>
+	
 
 		<script src="script.js"></script>
+		<script>
+			getTrend()
+		</script>
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

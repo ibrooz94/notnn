@@ -40,16 +40,6 @@
     <script>
         var b = localStorage.getItem("myLink");
         getlink(b);
-
-        function linkSender(e) {
-            e = e || window.event;
-            e.preventDefault();
-
-            let x = event.currentTarget.dataset.recordId;
-            const api_url = "https://polar-temple-04652.herokuapp.com/d/" + x;
-            localStorage.setItem("myLink", api_url);
-            window.location.href = "download.html";
-        }
     </script>
     
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
