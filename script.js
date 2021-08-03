@@ -40,7 +40,7 @@ function trend(data) {
 
 }
 
-// Get form input (base.html)
+// Get form input [INDEX ]
 function valueSender(){
 	let x = document.getElementById("userinput").value;
 	const api_url = "https://polar-temple-04652.herokuapp.com/s/" + x;
@@ -52,20 +52,28 @@ function valueSender(){
 async function getapi(url) {
     // show loader
 	document.getElementById('loading').classList.remove('hidden');
-
-	// Storing response
-	const response = await fetch(url)
-	
-	// Storing data in form of JSON
-	var data = await response.json();
-
-	if(response){
-		document.getElementById('loading').classList.add('hidden');
-		show(data);
 		
-	}else{
-		console.log("no data found");
-	}	
+	const response = await fetch(url, {
+		method: 'GET', // *GET, POST, PUT, DELETE, etc.
+		headers: {
+		'Content-Type': 'application/json'
+		}
+	})
+	.then((response) => {
+		if (response.ok) {
+		  return response.json();
+		} else {
+		  throw new Error('Something went wrong');
+		}
+	})
+	.then((responseJson) => {
+		// Do something with the response
+		document.getElementById('loading').classList.add('hidden');
+		show(responseJson)
+	})
+	.catch((error) => {
+		console.log(error)
+	});
 }
 
 // Function to define innerHTML for display [ RESULTS PAGE ]
@@ -91,25 +99,34 @@ function show(data) {
 
 }
 
-// SECOND API CALL  DOWNLOAD-PAGE  SECOND API CALL  DOWNLOAD-PAGE  SECOND API CALL 
+/////////////// SECOND API CALL  DOWNLOAD-PAGE  SECOND API CALL  DOWNLOAD-PAGE  SECOND API CALL /////////////
 
 async function getlink(url) {
     // show loader
 	document.getElementById('loading').classList.remove('hidden');
-
-	// Storing response
-	const response = await fetch(url)
-	
-	// Storing data in form of JSON
-	var data = await response.json();
-	if (data) {
-		// to hide the loader
+	const response = await fetch(url, {
+		method: 'GET',
+		headers: {
+		'Content-Type': 'application/json'
+		}
+	})
+	.then((response) => {
+		if (response.ok) {
+		  return response.json();
+		} else {
+		  throw new Error('Something went wrong');
+		}
+	})
+	.then((responseJson) => {
+		// Do something with the response
 		document.getElementById('loading').classList.add('hidden');
-		present(data);
-	}else{
+		present(responseJson)
+	})
+	.catch((error) => {
 		document.getElementById('loading').classList.add('hidden');
-		alert('ERROR')
-	}
+		document.getElementById("cards").innerHTML = "<h1> An error has occured, please try again. </h1>"
+		console.log(error)
+	});
 }
 
 // Function to define innerHTML for display [DOWNLOAD PAGE]
@@ -134,7 +151,6 @@ function present(data) {
 }
 // download.html
 function linkSender(e) {
-	console.log("I worked")
 	e = e || window.event;
 	e.preventDefault();
 	let x = event.currentTarget.dataset.recordId;
