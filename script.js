@@ -5,18 +5,29 @@ async function getTrend() {
 	document.getElementById('loading').classList.remove('hidden');
 
 	// Storing response
-	const response = await fetch(url)
-	
-	// Storing data in form of JSON
-	var data = await response.json();
-
-	if(response){
+	const response = await fetch(url, {
+		method: 'GET',
+		headers: {
+		'Content-Type': 'application/json'
+		}
+	})
+	.then((response) => {
+		if (response.ok) {
+		  return response.json();
+		} else {
+			document.getElementById('loading').classList.add('hidden');
+		  	throw new Error('Something went wrong');
+		}
+	})
+	.then((responseJson) => {
 		document.getElementById('loading').classList.add('hidden');
-		trend(data);
-		
-	}else{
-		console.log("no data found");
-	}	
+		trend(responseJson);
+	})
+	.catch((error) => {
+		document.getElementById('loading').classList.add('hidden');
+		document.getElementById("cards").innerHTML = "<h1> An error has occured, please try again. </h1>";
+		console.log(error)
+	});
 }
 
 // Function to define innerHTML for display [ RESULTS PAGE ]
@@ -48,13 +59,13 @@ function valueSender(){
 	window.location.href = "results.html";
 	}
 
-// Defining async function
+// Defining async function for search
 async function getapi(url) {
     // show loader
 	document.getElementById('loading').classList.remove('hidden');
-		
+
 	const response = await fetch(url, {
-		method: 'GET', // *GET, POST, PUT, DELETE, etc.
+		method: 'GET',
 		headers: {
 		'Content-Type': 'application/json'
 		}
@@ -63,7 +74,8 @@ async function getapi(url) {
 		if (response.ok) {
 		  return response.json();
 		} else {
-		  throw new Error('Something went wrong');
+			document.getElementById('loading').classList.add('hidden');
+		  	throw new Error('Something went wrong');
 		}
 	})
 	.then((responseJson) => {
@@ -72,6 +84,8 @@ async function getapi(url) {
 		show(responseJson)
 	})
 	.catch((error) => {
+		document.getElementById('loading').classList.add('hidden');
+		document.getElementById("cards").innerHTML = "<h1> An error has occured, please try again. </h1>";
 		console.log(error)
 	});
 }
@@ -153,7 +167,7 @@ function present(data) {
 function linkSender(e) {
 	e = e || window.event;
 	e.preventDefault();
-	let x = event.currentTarget.dataset.recordId;
+	let x = e.currentTarget.dataset.recordId;
 	const api_url = "https://polar-temple-04652.herokuapp.com/d/" + x;
 	localStorage.setItem("myLink", api_url);
 	window.location.href = "download.html";
