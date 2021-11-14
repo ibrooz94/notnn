@@ -46,7 +46,7 @@ function trend(data) {
 // Get form input [INDEX ]
 function valueSender(){
 	let x = document.getElementById("userinput").value;
-	const api_url = "https://polar-temple-04652.herokuapp.com/s/" + x;
+	const api_url = x;
 	localStorage.setItem("myValue", api_url);
 	window.location.href = "results.html";
 	// var b = localStorage.getItem("myValue");
@@ -55,6 +55,7 @@ function valueSender(){
 
 // Defining async function for search
 async function getapi(url) {
+	url = "https://polar-temple-04652.herokuapp.com/s/" + url
     // show loader
 	// document.getElementById('loading').classList.remove('hidden');
 
@@ -86,12 +87,16 @@ async function getapi(url) {
 
 // Function to define innerHTML for display [ RESULTS PAGE ]
 function show(data) {
+	let x = localStorage.getItem("myValue");
+	let para = document.createElement("H3");
+	para.innerHTML = "Search results for " + "\'" + x + "\'";
+	document.querySelector("main").prepend(para);
+
 	let results =
 		``;
 	if(data.length == 0){
-		return document.getElementById("cards").innerHTML = "<h3> Nothing to see here </h3>";
+		return document.getElementById("cards").innerHTML = "<h3> ... no results found </h3>";
 	}
-	console.log(data);
 	for (let r of data) {
 		results += `
 		<div class="item"> 
@@ -104,7 +109,6 @@ function show(data) {
 
 	// Setting innerHTML as tab variable
 	return document.getElementById("cards").innerHTML = results;
-
 }
 
 
@@ -112,8 +116,10 @@ function show(data) {
 /////////////// SECOND API CALL  DOWNLOAD-PAGE  SECOND API CALL  DOWNLOAD-PAGE  SECOND API CALL /////////////
 
 async function getlink(url) {
-    // show loader
-	document.getElementById('loading').classList.remove('hidden');
+
+	url = "https://polar-temple-04652.herokuapp.com/d/" + url
+
+	document.getElementById('loading').classList.remove('hidden');    // show loader
 	const response = await fetch(url, {
 		method: 'GET',
 		headers: {
@@ -164,7 +170,7 @@ function linkSender(e) {
 	e = e || window.event;
 	e.preventDefault();
 	let x = e.currentTarget.dataset.recordId;
-	const api_url = "https://polar-temple-04652.herokuapp.com/d/" + x;
+	const api_url = x;
 	localStorage.setItem("myLink", api_url);
 	window.location.href = "download.html";
 	// var b = localStorage.getItem("myLink");

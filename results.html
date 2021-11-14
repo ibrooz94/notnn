@@ -31,25 +31,24 @@
     </nav>
 
   <main> 
-      <div class="cards" id="cards"></div>
+    <h1 id="header"> </h1>
+    <div class="cards" id="cards"></div>
+
   </main>
-
   <footer> Footer </footer>
-
   </div>
 
   <script src="script.js"></script>
   <script src="utils.js"></script>
   <script>
-      navToggle();
-    document.getElementById("userinput")
-        .addEventListener("keyup", function(event) {
+    navToggle();
+    document.getElementById("userinput").addEventListener("keyup", function(event) {
         if (event.keyCode === 13) {
             document.getElementById("search-btn").click();
         }
     });
-      var b = localStorage.getItem("myValue");
-      getapi(b);
+    var b = localStorage.getItem("myValue");
+    getapi(b);
   </script>
     
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
