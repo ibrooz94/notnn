@@ -1,6 +1,11 @@
 ---
 deployment:
       tasks:
-        - export DEPLOYPATH=/home/notnnxyz/public_html  # Add /<app_folder> if required
-        - /bin/cp index.html $DEPLOYPATH                 #Copy specific file to destination from root
+        - export DEPLOYPATH=/home/notnnxyz/public_html
+        - /bin/cp index.html $DEPLOYPATH
+        - /bin/cp download.html $DEPLOYPATH
+        - /bin/cp results.html $DEPLOYPATH
+        - /bin/cp style.css $DEPLOYPATH
+        - /bin/cp script.js $DEPLOYPATH
+        - /bin/cp utils.js $DEPLOYPATH
         
