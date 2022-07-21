@@ -1,6 +1,6 @@
 
 async function getTrend() {
-	url = "https://polar-temple-04652.herokuapp.com/tr"
+	url = "https://api.bruhsite.com/tr"
 
 	// Storing response
 	const response = await fetch(url, {
@@ -55,7 +55,7 @@ function valueSender(){
 
 // Defining async function for search
 async function getapi(url) {
-	url = "https://polar-temple-04652.herokuapp.com/s/" + url
+	url = "https://api.bruhsite.com/s/" + url
     // show loader
 	// document.getElementById('loading').classList.remove('hidden');
 
@@ -117,7 +117,7 @@ function show(data) {
 
 async function getlink(url) {
 
-	url = "https://polar-temple-04652.herokuapp.com/d/" + url
+	url = "https://api.bruhsite.com/d/" + url
 
 	document.getElementById('loading').classList.remove('hidden');    // show loader
 	const response = await fetch(url, {
