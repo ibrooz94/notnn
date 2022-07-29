@@ -1,7 +1,7 @@
+let global_url = "https://polar-temple-04652.herokuapp.com/"
 
 async function getTrend() {
-	url = "https://api.bruhsite.com/tr"
-
+	url = global_url + '/tr'
 	// Storing response
 	const response = await fetch(url, {
 		method: 'GET',
@@ -55,7 +55,7 @@ function valueSender(){
 
 // Defining async function for search
 async function getapi(url) {
-	url = "https://api.bruhsite.com/s/" + url
+	url = global_url + "/s" + urld
     // show loader
 	// document.getElementById('loading').classList.remove('hidden');
 
@@ -117,7 +117,7 @@ function show(data) {
 
 async function getlink(url) {
 
-	url = "https://api.bruhsite.com/d/" + url
+	url = global_url + "d/" + url
 
 	document.getElementById('loading').classList.remove('hidden');    // show loader
 	const response = await fetch(url, {
